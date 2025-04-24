@@ -46,7 +46,7 @@ const
 		Данные, false
 	);
 
-console.log(Хэш.toString(16)); // ea05b4f13a...a4efec4ecb
+console.log(Хэш.toString(16)); // e75f6078a3...8fb5507cd3
 ```
 
 Пример вычисления ЭЦП:
