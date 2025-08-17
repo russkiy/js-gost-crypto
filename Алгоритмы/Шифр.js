@@ -311,48 +311,6 @@ class ГОСТ_Шифр {
 		}
 		return массив;
 	}
-
-	static #Символы_кода_числа =
-		"АБВГҐДЕЄЁЖЗИІЇЙКЛМНОПРСТУЎФХЦЧШЩ" +
-		"ЪЫЬЭЮЯабвгґдеєёжзиіїйклмнопрстуў" +
-		"фхцчшщъыьэюяABCDEFGHIJKLMNOPQRST" +
-		"UVWXYZabcdefghijklmnopqrstuvwxyz";
-
-	static В_текстовый_код(строка) { // байтовую строку в текстовый код из символов набора
-		let код = "";
-		for (let i = 0; i < строка.length; i += 7) {
-			let число = 0n;
-			for (let j = 0; j < 7; j++)
-				if (строка[i + j] !== undefined)
-					число +=
-						BigInt(строка[i + j].charCodeAt(0)) << BigInt(16 * j);
-				else break;
-			for (let j = 0; j < 16; j++) {
-				if (i + 7 >= строка.length && число == 0n) break;
-				код += this.#Символы_кода_числа[число & 0x7Fn];
-				число >>= 7n;
-			}
-		}
-		return код;
-	}
-
-	static В_байтовую_строку(код) { // текстовый код из символов набора в байтовую строку
-		let строка = "";
-		for (let i = 0; i < код.length; i += 16) {
-			let число = 0n;
-			for (let j = 0; j < 16; j++) {
-				if (код[i + j] !== undefined)
-					число += BigInt(this.#Символы_кода_числа.indexOf(код[i + j])) << BigInt(j) * 7n;
-				else break;
-			}
-			for (let j = 0; j < 16; j++) {
-				if (число == 0n) break;
-				строка += String.fromCharCode(Number(число & 0xFFFFn));
-				число >>= 16n;
-			}
-		}
-		return строка;
-	}
 }
 
 module.exports = ГОСТ_Шифр;
