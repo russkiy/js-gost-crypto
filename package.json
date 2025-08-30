@@ -1,6 +1,6 @@
 {
   "name": "gost-cryptography",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Криптографические алгоритмы, закреплённые в стандартах ГОСТ.",
   "main": "Основа.js",
   "scripts": {
